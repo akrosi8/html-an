@@ -1,0 +1,18 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <h1>This is an example webpage to be parsed!</h1>
+    <h3>Parsing by HTML-AN (htmlan)</h3>
+  </body>
+  
+  <!-- This is a .htmlan file -->
+  <!--
+    Note The File Extensions
+    Treat as a normal .HTML File
+    This will get minified by the interpreter
+    Done with C!
+  -->
+</html>
