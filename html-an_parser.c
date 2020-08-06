@@ -3,14 +3,14 @@
 #include<stdlib.h>
 #include<string.h>
 
-void rmcom(FILE *fip, FILE *fop) {
+void rmcom(FILE *fip, FILE *fop) { /* Remove comments from fip and write modified file to fop */
   int stage = 0;
   bool comment = false;
   char c;
-  while((c = getc(fip)) != EOF) {
+  while((c = getc(fip)) != EOF) { /* Read to end of file */
     if(comment == false) {
-      fputc(c,fop); /* Change to printf for debugging */
-      if(c == '-' && stage == 3) {
+      fputc(c,fop); /* Writes current character to output file if not within  a comment. */
+      if(c == '-' && stage == 3) { /* This is bad. I'll fix it with a rewrite. */
 	fseek(fop,-4,SEEK_CUR);
 	comment = true;
 	stage = 0;
@@ -35,7 +35,7 @@ void rmcom(FILE *fip, FILE *fop) {
   }
 }
 
-char *fname(char *fip) {
+char *fname(char *fip) { /* Redact last two characters from filename */
   int u = 0;
   char *fname = malloc(sizeof(fip));
   strcpy(fname, fip);
@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
     printf("no input files\n");
     exit(1);
   }
-  for(int i = 1; i < argc; i++) {
+  for(int i = 1; i < argc; i++) { /*Scan all given files */
     FILE *fip;
     FILE *fop;
     fip = fopen(argv[i],"r");
