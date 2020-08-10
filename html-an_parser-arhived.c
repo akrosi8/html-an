@@ -9,7 +9,6 @@ void rmcom(FILE *fip, FILE *fop) { /* Remove comments from fip and write modifie
   char c;
   while((c = getc(fip)) != EOF) { /* Read to end of file */
     if(comment == false) {
-      fputc(c,fop); /* Writes current character to output file if not within  a comment. */
       if(c == '-' && stage == 3) { /* This is bad. I'll fix it with a rewrite. */
 	fseek(fop,-4,SEEK_CUR);
 	comment = true;
@@ -21,6 +20,7 @@ void rmcom(FILE *fip, FILE *fop) { /* Remove comments from fip and write modifie
         stage = 2;
       if(c == '<')
         stage = 1;
+      fputc(c,fop); /* Writes current character to output file if not within  a comment. */
     }
     if(comment == true) {
       if(stage == 2 && c == '>') {
